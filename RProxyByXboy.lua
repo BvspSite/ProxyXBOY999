@@ -962,7 +962,8 @@ local gotMatch = var[2]:match("and got (.+)%!]") or h
 sendVariant({
 [0] = "OnTalkBubble",
 [1] = getLocal().netId,
-[2] = "[`2REAL``] " .. getLocal().name:gsub("%[(.-)%]", ""):gsub("`.","") .. " spun the wheel and got " .. gotMatch .. "!]" .. getGame(tonumber(h)), }, -1)
+[2] = "[`2REAL``] " .. getLocal().name:gsub("%[(.-)%]", ""):gsub("`.","") .. " spun the wheel and got " .. gotMatch .. "!]" .. getGame(tonumber(h))
+}, -1)
 end
 table.insert(LogSpin, {spin = "\nadd_label_with_icon_button|small|[`2REAL``] " .. var[2] .. "|left|758|" .. var[1] .. "|\n", netid = var[1],spins = var[2]})
 return true
