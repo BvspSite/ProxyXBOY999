@@ -907,7 +907,7 @@ return true
 end
 
 
-AddHook("onTouch", "on_touch", on_touchpacket)
+-- Touch handler removed (not needed for this script)
 AddHook("OnVarlist", "variants", function(var) 
 if not var then return false end
 
