@@ -20,7 +20,7 @@ data = {}
 Tax = 0
 local rfspin = true
 local reme = true
-local qeme
+local qeme = false
 local leme = false
 
 -- New Feature Variables
@@ -1041,37 +1041,33 @@ if not packet then return false end
 if packet:find("realfakespin|1") then
 rfspin = true
 tol("`2REAL`o-`4FAKE `oSpin Detector `2Enabled`o.")
-else if packet:find("realfakespin|0") then
+elseif packet:find("realfakespin|0") then
 rfspin = false
 tol("`2REAL`o-`4FAKE `oSpin Detector `4Disabled`o.")
-end
 end
 
 if packet:find("gamereme|1") then
 reme = true
 tol("`^REME `oSpin Counter `2Enabled`o.")
-else if packet:find("gamereme|0") then
+elseif packet:find("gamereme|0") then
 reme = false
 tol("`^REME `oSpin Counter `4Disabled`o.")
-end
 end
 
 if packet:find("gameqeme|1") then
 qeme = true
 tol("`9QEME `oSpin Counter `2Enabled`o.")
-else if packet:find("gameqeme|0") then
+elseif packet:find("gameqeme|0") then
 qeme = false
 tol("`9QEME `oSpin Counter `4Disabled`o.")
-end
 end
 
 if packet:find("gameleme|1") then
 leme = true
 tol("`eLEME `oSpin Counter `2Enabled`o.")
-else if packet:find("gameleme|0") then
+elseif packet:find("gameleme|0") then
 leme = false
 tol("`eLEME `oSpin Counter `4Disabled`o.")
-end
 end
 
 if packet:find("buttonClicked|proxylogspin") then
