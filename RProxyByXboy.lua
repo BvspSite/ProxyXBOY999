@@ -1,22 +1,7 @@
--- Script by XBOY | GENTA HAX EDITION | V1.5
-SleepS=function(int_s)sleep(int_s*1000)end
-local proxy,command,PlayerList,LogSpin={},{},{},{}
-proxy.dev="XBOY";proxy.name="XBOY999";proxy.version="V1.5 GENTA";version="V1.5";proxy.support="undefined"
-command.var={};command.var.taptp=false;command.var.rfspin=false;data={};Tax=0
-local rfspin,reme,qeme,leme=true,true,false,false
-local magnetMode,autoHarvestMode,autoPlantID=false,false,0
-local SpinStats={total=0,wins=0,losses=0}
-local TrackedPlayers,CheatStates={},{}
-local autoCollectActive,autoCollectRange=false,5
-local bscanPage,dscanPage=1,1
-local bscanData,dscanData={},{}
-local world_type,world_len="nn",12
-local findWorldActive=false
-local currentWorldName,isRelogging="",false
-local relogTimer,relogState=0,0
-
-loginp = [[
-set_border_color|0,255,100,255
+-- XBOY999 | GENTA HAX V1.5 | PROTECTED
+SleepS=function(int_s)sleep(int_s*1000)end;local proxy,command,PlayerList,LogSpin={},{},{},{}
+proxy.dev="XBOY";proxy.name="XBOY999";proxy.version="V1.5 GENTA";version="V1.5";proxy.support="undefined";command.var={};command.var.taptp=false;command.var.rfspin=false;data={};Tax=0;local rfspin,reme,qeme,leme=true,true,false,false;local magnetMode,autoHarvestMode,autoPlantID=false,false,0;local SpinStats={total=0,wins=0,losses=0};local TrackedPlayers,CheatStates={},{};local autoCollectActive,autoCollectRange=false,5;local bscanPage,dscanPage=1,1;local bscanData,dscanData={},{};local world_type,world_len="nn",12;local findWorldActive=false;local currentWorldName,isRelogging="",false;local relogTimer,relogState=0,0
+loginp=[[set_border_color|0,255,100,255
 set_bg_color|15,15,25,220
 set_default_color|`w
 add_label_with_icon|big|`#========================|left|9474|
@@ -56,11 +41,8 @@ add_spacer|small|
 add_label_with_icon|small|`pNeed help? Contact `#XBOY `pfor support|left|1432|
 add_spacer|small|
 end_dialog|loginpend|`#Let's Go!||
-add_quick_exit|
-]]
-
-proxy_menu = [[
-set_border_color|0,255,100,255
+add_quick_exit|]]
+proxy_menu=[[set_border_color|0,255,100,255
 set_bg_color|15,15,25,220
 set_default_color|`w
 add_label_with_icon|big|`#[`#XBOY999`#] `wCommand Menu|left|9474|
@@ -83,11 +65,8 @@ add_spacer|small|
 add_label_with_icon|small|Have Problem? Contact `cXBOY|left|1432|
 add_spacer|small|
 end_dialog|bye|Close|
-add_quick_exit|
-]]
-
-function getSpinDialog()
-return[[set_border_color|0,255,100,255
+add_quick_exit|]]
+function getSpinDialog()return[[set_border_color|0,255,100,255
 set_bg_color|15,15,25,220
 set_default_color|`9
 add_label_with_icon|big|`2Spin Cheats   |left|758|
@@ -98,11 +77,8 @@ add_checkbox|gamereme|`^REME `0Spin Counter|]]..tostring(reme and"1"or"0")..[[|
 add_checkbox|gameqeme|`9QEME `0Spin Counter|]]..tostring(qeme and"1"or"0")..[[|
 add_checkbox|gameleme|`eLEME `0Spin Counter|]]..tostring(leme and"1"or"0")..[[|
 add_spacer|small|
-end_dialog|proxywrenchend|Close|Enable|]]
-end
-
-function showDropMenu()
-local dialog=[[set_border_color|0,255,100,255
+end_dialog|proxywrenchend|Close|Enable|]]end
+function showDropMenu()sendVariant({[0]="OnDialogRequest",[1]=[[set_border_color|0,255,100,255
 set_bg_color|15,15,25,220
 set_default_color|`9
 add_label_with_icon|big|`2Drop & Inventory Commands|left|13810|
@@ -123,12 +99,8 @@ add_textbox|`2/balance `9[Show Your Balance]|
 add_spacer|small|
 add_button|backtomenu|<< Back to Menu|noflags|0|0|
 add_quick_exit||Close|
-end_dialog|dropcmd||]]
-sendVariant({[0]="OnDialogRequest",[1]=dialog},-1,200)
-end
-
-function showHostingMenu()
-local dialog=[[set_border_color|0,255,100,255
+end_dialog|dropcmd||]]},-1,200)end
+function showHostingMenu()sendVariant({[0]="OnDialogRequest",[1]=[[set_border_color|0,255,100,255
 set_bg_color|15,15,25,220
 set_default_color|`9
 add_label_with_icon|big|`2Hosting Helper Commands|left|758|
@@ -141,12 +113,8 @@ add_textbox|`2/win `9<1-2> [Drop Bets to Winner]|
 add_spacer|small|
 add_button|backtomenu|<< Back to Menu|noflags|0|0|
 add_quick_exit||Close|
-end_dialog|hostcmd||]]
-sendVariant({[0]="OnDialogRequest",[1]=dialog},-1,200)
-end
-
-function showGambleMenu()
-local dialog=[[set_border_color|0,255,100,255
+end_dialog|hostcmd||]]},-1,200)end
+function showGambleMenu()sendVariant({[0]="OnDialogRequest",[1]=[[set_border_color|0,255,100,255
 set_bg_color|15,15,25,220
 set_default_color|`9
 add_label_with_icon|big|`2Gamble & Spin Commands|left|32|
@@ -159,12 +127,8 @@ add_textbox|`2/time `9[Show Your Region Time]|
 add_spacer|small|
 add_button|backtomenu|<< Back to Menu|noflags|0|0|
 add_quick_exit||Close|
-end_dialog|gamblecmd||]]
-sendVariant({[0]="OnDialogRequest",[1]=dialog},-1,200)
-end
-
-function showScannerMenu()
-local dialog=[[set_border_color|0,255,100,255
+end_dialog|gamblecmd||]]},-1,200)end
+function showScannerMenu()sendVariant({[0]="OnDialogRequest",[1]=[[set_border_color|0,255,100,255
 set_bg_color|15,15,25,220
 set_default_color|`9
 add_label_with_icon|big|`2World Scanner Commands|left|3898|
@@ -177,12 +141,8 @@ add_textbox|`2/ready `9[Show Ready to Harvest Trees]|
 add_spacer|small|
 add_button|backtomenu|<< Back to Menu|noflags|0|0|
 add_quick_exit||Close|
-end_dialog|scancmd||]]
-sendVariant({[0]="OnDialogRequest",[1]=dialog},-1,200)
-end
-
-function showCollectMenu()
-local dialog=[[set_border_color|0,255,100,255
+end_dialog|scancmd||]]},-1,200)end
+function showCollectMenu()sendVariant({[0]="OnDialogRequest",[1]=[[set_border_color|0,255,100,255
 set_bg_color|15,15,25,220
 set_default_color|`9
 add_label_with_icon|big|`2Auto Collect Commands|left|1452|
@@ -195,12 +155,8 @@ add_textbox|`2/mag `9[Toggle Magnet Mode]|
 add_spacer|small|
 add_button|backtomenu|<< Back to Menu|noflags|0|0|
 add_quick_exit||Close|
-end_dialog|collectcmd||]]
-sendVariant({[0]="OnDialogRequest",[1]=dialog},-1,200)
-end
-
-function showPlayerMenu()
-local dialog=[[set_border_color|0,255,100,255
+end_dialog|collectcmd||]]},-1,200)end
+function showPlayerMenu()sendVariant({[0]="OnDialogRequest",[1]=[[set_border_color|0,255,100,255
 set_bg_color|15,15,25,220
 set_default_color|`9
 add_label_with_icon|big|`2Player Tracker Commands|left|6016|
@@ -210,12 +166,8 @@ add_textbox|`2/track `9<Name> [Track Player Position]|
 add_spacer|small|
 add_button|backtomenu|<< Back to Menu|noflags|0|0|
 add_quick_exit||Close|
-end_dialog|playercmd||]]
-sendVariant({[0]="OnDialogRequest",[1]=dialog},-1,200)
-end
-
-function showUtilityMenu()
-local dialog=[[set_border_color|0,255,100,255
+end_dialog|playercmd||]]},-1,200)end
+function showUtilityMenu()sendVariant({[0]="OnDialogRequest",[1]=[[set_border_color|0,255,100,255
 set_bg_color|15,15,25,220
 set_default_color|`9
 add_label_with_icon|big|`2Utility Tools Commands|left|5480|
@@ -230,836 +182,38 @@ add_textbox|`2/worldtype `9<wn/nn> [Set World Type]|
 add_spacer|small|
 add_button|backtomenu|<< Back to Menu|noflags|0|0|
 add_quick_exit||Close|
-end_dialog|utilitycmd||]]
-sendVariant({[0]="OnDialogRequest",[1]=dialog},-1,200)
-end
-
-function DropItem(id,count)sendPacket(2,"action|drop\n|itemID|"..id.."\n")sendPacket(2,"action|dialog_return\ndialog_name|drop_item\nitemID|"..id.."|\ncount|"..count.."\n")end
-function checkitm(id)for _,inv in pairs(getInventory())do if inv.id==id then return inv.amount end end;return 0 end
-function ovlay(str)sendVariant({[0]="OnTextOverlaySet",[1]=str},-1,100)end
-function tol(str)logToConsole("`9[`cXBOY`2999`9] `o"..str)end
-
-function CountAndStoreAmount()
-Amount=0
-for _,list in pairs(data)do
-Name=""
-if list.id==7188 then Name="Blue Gem Lock";Amount=Amount+list.count*10000
-elseif list.id==1796 then Name="Diamond Lock";Amount=Amount+list.count*100
-elseif list.id==242 then Name="World Lock";Amount=Amount+list.count end
-end
-data={}
-end
-
-function collect()
-tiles={{PX1,PY1},{PX2,PY2}}
-for _,obj in pairs(getWorldObject())do
-for _,tiles in pairs(tiles)do
-if(obj.pos.x)//32==tiles[1]and(obj.pos.y)//32==tiles[2]then
-sendPacketRaw(false,{type=11,value=obj.oid,x=obj.pos.x,y=obj.pos.y})
-table.insert(data,{id=obj.id,count=obj.amount})
-end
-end
-end
-CountAndStoreAmount()
-data={}
-end
-
-function getNameByNetid(netid)for _,player in pairs(PlayerList)do if player.netid==netid then return player.name end end end
-function refunc(number)if number==19 or number==28 or number==0 then hasil=0 else num1=math.floor(number/10);num2=number%10;hasil=string.sub(tostring(num1+num2),-1)end;return hasil end
-function qefunc(number)if number>=10 then hasil=string.sub(number,-1)else hasil=number end;return hasil end
-
-function lefunc(number)
-local hasil
-if number==10 or number==19 or number==28 or number==0 then hasil=0
-else
-local num1=math.floor(number/10)
-local num2=number%10
-local sum=num1+num2
-if sum==10 then hasil=0 elseif sum==9 then hasil="`4LOSE" else hasil=string.sub(tostring(sum),-1)end
-end
-return hasil
-end
-
-function getGame(num)
-local result=""
-local parts={}
-if reme then table.insert(parts,"`^REME `6"..refunc(tonumber(num)))end
-if qeme then table.insert(parts,"`9QEME `6"..qefunc(tonumber(num)))end
-if leme then table.insert(parts,"`eLEME `6"..lefunc(tonumber(num)))end
-if #parts>0 then result=" "..table.concat(parts," `0| ")end
-return result
-end
-
-function logspin()
-dialogSpin={}
-for _,spin in pairs(LogSpin)do table.insert(dialogSpin,spin.spin)end
-sendVariant({[0]="OnDialogRequest",[1]="set_border_color|0,255,100,255\nset_bg_color|15,15,25,220\nset_default_color|`w\nadd_label_with_icon|big|`#Spin History|left|1436|\nadd_spacer|small|\nadd_smalltext|`wClick the wheel icon to filter player spins|\n"..table.concat(dialogSpin).."\nadd_spacer|small|\nadd_quick_exit|||\nend_dialog|world_spin|Close||"},-1,200)
-end
-
-function filterspin(id)
-filterLog={}
-for _,log in pairs(LogSpin)do if log.netid==id then table.insert(filterLog,"\nadd_label_with_icon|small|"..log.spin.."|left|758|\n")end end
-sendVariant({[0]="OnDialogRequest",[1]="set_border_color|112,86,191,255\nset_bg_color|43,34,74,200\nset_default_color|`0\nadd_label_with_icon|big|"..getNameByNetid(id).."`2's Spin History|left|1436|\nadd_spacer|small|\n"..table.concat(filterLog).."|\nadd_spacer|small|\nadd_quick_exit|||\nadd_button|backtospin|Back||"},-1,200)
-end
-
-function savePlayerData(name,netid)if PlayerList[netid]==nil or PlayerList[netid].name~=name then PlayerList[netid]={name=name,netid=netid}end end
-
-function scanWorld(itemID)
-local count=0
-local locations={}
-for _,tile in pairs(getTile())do if tile.fg==itemID or tile.bg==itemID then count=count+1;table.insert(locations,{x=tile.x,y=tile.y})end end
-return count,locations
-end
-
-function scanAllBlocks()
-local blockCount={}
-local totalBlocks=0
-for _,tile in pairs(getTile())do
-if tile.fg~=0 then
-if blockCount[tile.fg]then blockCount[tile.fg]=blockCount[tile.fg]+1 else blockCount[tile.fg]=1 end
-totalBlocks=totalBlocks+1
-end
-if tile.bg~=0 and tile.bg~=14 then
-if blockCount[tile.bg]then blockCount[tile.bg]=blockCount[tile.bg]+1 else blockCount[tile.bg]=1 end
-totalBlocks=totalBlocks+1
-end
-end
-local blockList={}
-for itemID,count in pairs(blockCount)do
-local item=getItemByID(itemID)
-local itemName=item and item.Name or"Item ["..itemID.."]"
-table.insert(blockList,{id=itemID,name=itemName,count=count})
-end
-table.sort(blockList,function(a,b)return a.count>b.count end)
-return blockList,totalBlocks
-end
-
-function scanAllDrops()
-local dropCount={}
-local totalDrops=0
-for _,obj in pairs(getWorldObject())do
-if dropCount[obj.id]then dropCount[obj.id]=dropCount[obj.id]+obj.amount else dropCount[obj.id]=obj.amount end
-totalDrops=totalDrops+obj.amount
-end
-local dropList={}
-for itemID,count in pairs(dropCount)do
-local item=getItemByID(itemID)
-local itemName=item and item.Name or"Item ["..itemID.."]"
-table.insert(dropList,{id=itemID,name=itemName,count=count})
-end
-table.sort(dropList,function(a,b)return a.count>b.count end)
-return dropList,totalDrops
-end
-
-function showBlockScan(page)
-if not page then page=1 end
-bscanPage=page
-local blockList,totalBlocks=scanAllBlocks()
-bscanData=blockList
-local itemsPerPage=15
-local totalPages=math.ceil(#blockList/itemsPerPage)
-if bscanPage>totalPages then bscanPage=totalPages end
-if bscanPage<1 then bscanPage=1 end
-local startIdx=(bscanPage-1)*itemsPerPage+1
-local endIdx=math.min(bscanPage*itemsPerPage,#blockList)
-local dialog="set_border_color|112,86,191,255\nset_bg_color|43,34,74,200\nset_default_color|`0\nadd_label_with_icon|big|`2Block Scan Results|left|3898|\nadd_smalltext|`9Total Blocks: `2"..totalBlocks.." `9| Unique: `2"..#blockList.."|\nadd_smalltext|`9Page `2"..bscanPage.." `9of `2"..totalPages.."|\nadd_spacer|small|\nadd_textbox|`9Blocks in world:|\nadd_spacer|small|\n"
-for i=startIdx,endIdx do if blockList[i]then dialog=dialog.."add_label_with_icon|small|`2"..blockList[i].name.." `9x`2"..blockList[i].count.."|left|"..blockList[i].id.."|\n"end end
-dialog=dialog.."add_spacer|small|\n"
-if totalPages>1 then
-local buttons=""
-if bscanPage>1 then buttons=buttons.."add_button|bscan_prev|<< Previous|noflags|0|0|\n"end
-if bscanPage<totalPages then if bscanPage>1 then buttons=buttons.."add_button|bscan_next|Next >>|noflags|0|0|\n"else buttons=buttons.."add_button|bscan_next|Next >>|noflags|0|0|\n"end end
-dialog=dialog..buttons
-dialog=dialog.."add_spacer|small|\n"
-end
-dialog=dialog.."add_quick_exit|||\nend_dialog|blockscan|Close||\n"
-sendVariant({[0]="OnDialogRequest",[1]=dialog},-1,200)
-end
-
-function showDropScan(page)
-if not page then page=1 end
-dscanPage=page
-local dropList,totalDrops=scanAllDrops()
-dscanData=dropList
-local itemsPerPage=15
-local totalPages=math.ceil(#dropList/itemsPerPage)
-if dscanPage>totalPages then dscanPage=totalPages end
-if dscanPage<1 then dscanPage=1 end
-local startIdx=(dscanPage-1)*itemsPerPage+1
-local endIdx=math.min(dscanPage*itemsPerPage,#dropList)
-local dialog="set_border_color|112,86,191,255\nset_bg_color|43,34,74,200\nset_default_color|`0\nadd_label_with_icon|big|`2Drop Scan Results|left|1452|\nadd_smalltext|`9Total Dropped: `2"..totalDrops.." `9| Types: `2"..#dropList.."|\n"
-if #dropList>0 then dialog=dialog.."add_smalltext|`9Page `2"..dscanPage.." `9of `2"..totalPages.."|\n"end
-dialog=dialog.."add_spacer|small|\n"
-if #dropList>0 then
-dialog=dialog.."add_textbox|`9Items on ground:|\nadd_spacer|small|\n"
-for i=startIdx,endIdx do if dropList[i]then dialog=dialog.."add_label_with_icon|small|`2"..dropList[i].name.." `9x`2"..dropList[i].count.."|left|"..dropList[i].id.."|\n"end end
-dialog=dialog.."add_spacer|small|\n"
-if totalPages>1 then
-local buttons=""
-if dscanPage>1 then buttons=buttons.."add_button|dscan_prev|<< Previous|noflags|0|0|\n"end
-if dscanPage<totalPages then if dscanPage>1 then buttons=buttons.."add_button|dscan_next|Next >>|noflags|0|0|\n"else buttons=buttons.."add_button|dscan_next|Next >>|noflags|0|0|\n"end end
-dialog=dialog..buttons
-dialog=dialog.."add_spacer|small|\n"
-end
-else
-dialog=dialog.."add_textbox|`4No items dropped in world!|\nadd_spacer|small|\n"
-end
-dialog=dialog.."add_quick_exit|||\nend_dialog|dropscan|Close||\n"
-sendVariant({[0]="OnDialogRequest",[1]=dialog},-1,200)
-end
-
-function getReadyTrees()
-local readyList={}
-for _,tile in pairs(getTile())do if tile.ready then local item=getItemByID(tile.fg);if item then table.insert(readyList,{x=tile.x,y=tile.y,name=item.Name})end end end
-return readyList
-end
-
-function getWorldStats()
-local world=getWorld()
-local objects=getWorldObject()
-local npcs=getNpc()
-local players=getPlayerlist()
-local objectCount=0;for _ in pairs(objects)do objectCount=objectCount+1 end
-local npcCount=0;for _ in pairs(npcs)do npcCount=npcCount+1 end
-local playerCount=0;for _ in pairs(players)do playerCount=playerCount+1 end
-return{name=world.name,width=world.width,height=world.height,objects=objectCount,npcs=npcCount,players=playerCount}
-end
-
-function getItemCount(itemID)return checkitm(itemID)end
-
-function findItemByName(searchName)
-local results={}
-for _,inv in pairs(getInventory())do
-local item=getItemByID(inv.id)
-if item and string.lower(item.Name):find(string.lower(searchName))then table.insert(results,{id=inv.id,name=item.Name,amount=inv.amount})end
-end
-return results
-end
-
-function getTotalInventoryValue()
-local total=0
-total=total+checkitm(7188)*10000
-total=total+checkitm(1796)*100
-total=total+checkitm(242)
-return total
-end
-
-function collectItemInRange(itemID,range)
-local collected=0
-local me=getLocal()
-local myPosX=me.pos.x or 0
-local myPosY=me.pos.y or 0
-for _,obj in pairs(getWorldObject())do
-if itemID==0 or obj.id==itemID then
-local distance=math.sqrt((obj.pos.x-myPosX)^2+(obj.pos.y-myPosY)^2)
-if distance<=range*32 then sendPacketRaw(false,{type=11,value=obj.oid,x=obj.pos.x,y=obj.pos.y});collected=collected+1 end
-end
-end
-return collected
-end
-
-function getAllPlayers()
-local playerList={}
-for _,player in pairs(getPlayerlist())do table.insert(playerList,{name=player.name,netid=player.netid,posX=player.pos.x,posY=player.pos.y})end
-return playerList
-end
-
-function placeBlock(x,y,itemID)findPath(x,y);sendPacketRaw(false,{type=3,px=x,py=y,value=itemID})end
-
-function generateRandomWorld(len,typ)
-local chars=(typ=="wn")and"ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"or"ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-local world=""
-for i=1,len do local r=math.random(1,#chars);world=world..string.sub(chars,r,r)end
-return world
-end
-
-function findRandomWorld()
-if world_len>24 then tol("`4World length cannot be more than 24 letters!");return end
-local worldName=generateRandomWorld(world_len,world_type)
-tol("`9Searching world: `2"..worldName)
-ovlay("`9Finding: `2"..worldName)
-sendPacket(3,"action|join_request\nname|"..worldName.."\ninvitedWorld|0")
-end
-
-function warpToWorld(worldName)
-if worldName==""or not worldName then tol("`4Please provide a world name!");return false end
-tol("`9Warping to world: `2"..worldName)
-ovlay("`9Warping to: `2"..worldName)
-sendPacket(3,"action|join_request\nname|"..worldName.."\ninvitedWorld|0")
-return true
-end
-
-function relogWorld()
-local world=getWorld()
-if not world or world.name==""or world.name=="EXIT"then tol("`4You're not in any world!");return false end
-currentWorldName=world.name
-relogState=1
-relogTimer=os.clock()
-tol("`9Relogging world: `2"..currentWorldName)
-sendPacket(3,"action|quit_to_exit")
-return true
-end
-
--- Auto Collect & Relog Hook (OnRender)
-local lastAutoCollect=0
-AddHook("OnRender","autoActions",function(deltaTime)
--- Auto Collect Logic
-if autoCollectActive then
-local currentTime=os.clock()
-if currentTime-lastAutoCollect>=0.5 then
-lastAutoCollect=currentTime
-local collected=collectItemInRange(0,autoCollectRange)
-end
-end
--- Relog State Machine
-if relogState>0 then
-local currentTime=os.clock()
-local elapsed=currentTime-relogTimer
-if relogState==1 then
-local world=getWorld()
-if world and world.name=="EXIT"then relogState=2;relogTimer=currentTime;tol("`9Left world. Rejoining in 1 second...")end
-elseif relogState==2 then
-if elapsed>=1.0 then relogState=3;relogTimer=currentTime;sendPacket(3,"action|join_request\nname|"..currentWorldName.."\ninvitedWorld|0");tol("`9Sending rejoin request...")end
-elseif relogState==3 then
-local world=getWorld()
-if world and world.name==currentWorldName then relogState=0;tol("`2Successfully rejoined world: `2"..currentWorldName.." `2✓")
-elseif elapsed>5.0 then relogState=0;tol("`4Relog timeout! Try again with /rr")end
-end
-end
-return false
-end)
-
--- OnVarlist Hook (Spin Detection & Console Messages)
-AddHook("OnVarlist","variants",function(varlist,netID)
-if not varlist then return false end
-local vtext=varlist[1]
-if varlist[0]=="OnConsoleMessage"then tol(vtext);return true end
-if rfspin==true then
-if varlist[0]=="OnTalkBubble"and varlist[2]then
-if varlist[2]:find("spun the wheel")then
-if varlist[2]:find("OID:")then
-local player_chat=varlist[2]:match("player_chat=(.+)")or varlist[2]
-sendVariant({[0]="OnTalkBubble",[1]=varlist[1],[2]="[`4FAKE``] "..player_chat,[3]=0},-1)
-table.insert(LogSpin,{spin="\nadd_label_with_icon_button|small|[`4FAKE``] "..varlist[2].."|left|758|"..varlist[1].."|\n",netid=varlist[1],spins="[`4FAKE``] "..varlist[2]})
-return true
-else
-local spinResult=varlist[2]:match("and got (.+)")
-if not spinResult then return false end
-local cleanResult=string.gsub(string.gsub(spinResult,"`",""),"`","")
-local numOnly=string.sub(cleanResult,2)
-local noSpace=string.gsub(numOnly," ","")
-local finalNum=string.gsub(string.gsub(noSpace,"!7",""),"]","")
-if varlist[1]~=getLocal().netid then
-local playerName=varlist[2]:match("%[``(.+) spun the")or"Unknown"
-table.insert(PlayerList,{name=playerName,netid=varlist[1]})
-else
-savePlayerData(getLocal().name:gsub("%[(.+)%]",""),varlist[1])
-end
-local nameChange={}
-nameChange[0]="OnNameChanged"
-local pname=getNameByNetid(varlist[1])or"Player"
-nameChange[1]=pname.." `b[`c"..finalNum.."``]"
-sendVariant(nameChange,tonumber(varlist[1]))
-if varlist[1]~=getLocal().netid then
-sendVariant({[0]="OnTalkBubble",[1]=varlist[1],[2]="[`2REAL``] "..varlist[2]..getGame(tonumber(finalNum)),[3]=0},-1)
-else
-local myResult=varlist[2]:match("and got (.+)%!]")or finalNum
-sendVariant({[0]="OnTalkBubble",[1]=getLocal().netid,[2]="[`2REAL``] "..getLocal().name:gsub("%[(.-)%]",""):gsub("`.","").." spun the wheel and got "..myResult.."!]"..getGame(tonumber(finalNum))},-1)
-end
-table.insert(LogSpin,{spin="\nadd_label_with_icon_button|small|[`2REAL``] "..varlist[2].."|left|758|"..varlist[1].."|\n",netid=varlist[1],spins=varlist[2]})
-return true
-end
-end
-return false
-end
-end
-return false
-end)
-
--- OnVarlist Hook (Lock Collection Messages)
-AddHook("OnVarlist","var",function(varlist,netID)
-if not varlist or not varlist[1]then return false end
-if varlist[0]=="OnConsoleMessage"then
-if varlist[1]:find("Collected")and varlist[1]:find("(%d+) Blue Gem Lock")then
-local amount=varlist[1]:match("(%d+) Blue Gem Lock")
-if amount then tol("`9Collected `2"..amount.." `eBlue Gem Lock`9.");ovlay("`9Collected `2"..amount.." `eBlue Gem Lock")end
-return true
-end
-end
-if varlist[0]=="OnConsoleMessage"then
-if varlist[1]:find("Collected")and varlist[1]:find("(%d+) Diamond Lock")then
-local amount=varlist[1]:match("(%d+) Diamond Lock")
-if amount then tol("`9Collected `2"..amount.." `1Diamond Lock`9.");ovlay("`9Collected `2"..amount.." `1Diamond Lock")end
-return true
-end
-end
-if varlist[0]=="OnConsoleMessage"then
-if varlist[1]:find("Collected")and varlist[1]:find("(%d+) World Lock")then
-local amount=varlist[1]:match("(%d+) World Lock")
-if amount then tol("`9Collected `2"..amount.." `9World Lock.");ovlay("`9Collected `2"..amount.." `9World Lock");ovlay(242)end
-return true
-end
-end
-return false
-end)
-
--- OnVarlist Hook (Dialog Blocking)
-AddHook("OnVarlist","Hook",function(varlist,netID)
-if not varlist or not varlist[1]then return false end
-if varlist[0]=="OnDialogRequest"then
-if varlist[1]:find("Drop Blue Gem Lock")or varlist[1]:find("Drop Diamond Lock")or varlist[1]:find("Drop World Lock")then return true end
-end
-if varlist[0]=="OnDialogRequest"then
-if varlist[1]:find("Telephone")then sendPacket(2,"action|dialog_return\ndialog_name|3898\nbuttonClicked|chc2_2_1\n\n");return true end
-end
-return false
-end)
-
--- OnTextPacket Hook (All Commands)
-AddHook("onTextPacket","packet",function(flag,packet)
-if not packet then return false end
-
--- Spin Settings
-if packet:find("realfakespin|1")then rfspin=true;tol("`2REAL`o-`4FAKE `oSpin Detector `2Enabled`o.")
-elseif packet:find("realfakespin|0")then rfspin=false;tol("`2REAL`o-`4FAKE `oSpin Detector `4Disabled`o.")end
-if packet:find("gamereme|1")then reme=true;tol("`^REME `oSpin Counter `2Enabled`o.")
-elseif packet:find("gamereme|0")then reme=false;tol("`^REME `oSpin Counter `4Disabled`o.")end
-if packet:find("gameqeme|1")then qeme=true;tol("`9QEME `oSpin Counter `2Enabled`o.")
-elseif packet:find("gameqeme|0")then qeme=false;tol("`9QEME `oSpin Counter `4Disabled`o.")end
-if packet:find("gameleme|1")then leme=true;tol("`eLEME `oSpin Counter `2Enabled`o.")
-elseif packet:find("gameleme|0")then leme=false;tol("`eLEME `oSpin Counter `4Disabled`o.")end
-
--- Spin Log
-if packet:find("buttonClicked|proxylogspin")then logspin();return true end
-if packet:find("dialog_name|world_spin\nbuttonClicked|(%d+)")then local id=packet:match("buttonClicked|(%d+)");filterspin(tonumber(id))end
-if packet:find("buttonClicked|backtospin")then logspin();return true end
-
--- Main Commands
-if packet:find("action|input\n|text|/spin")then sendVariant({[0]="OnDialogRequest",[1]=getSpinDialog()},-1,100);return true end
-if packet:find("action|input\n|text|/proxy")then sendVariant({[0]="OnDialogRequest",[1]=proxy_menu},-1,100);logToConsole("`6/proxy");return true end
-if packet:find("action|input\n|text|/news")then sendVariant({[0]="OnDialogRequest",[1]=loginp},-1,100);logToConsole("`6/news");return true end
-
--- Drop Commands
-if packet:find("action|input\n|text|/db (%d+)")then local amount=packet:match("action|input\n|text|/db (%d+)");DropItem(7188,amount);logToConsole("`6/db "..amount);tol("`9Dropped `2"..amount.." `eBlue Gem Lock`9.");ovlay("`9Dropped `2"..amount.." `eBlue Gem Lock");return true end
-if packet:find("action|input\n|text|/dd (%d+)")then local amount=packet:match("action|input\n|text|/dd (%d+)");DropItem(1796,amount);logToConsole("`6/dd "..amount);tol("`9Dropped `2"..amount.." `1Diamond Lock`9.");ovlay("`9Dropped `2"..amount.." `1Diamond Lock");return true end
-if packet:find("action|input\n|text|/dw (%d+)")then local amount=packet:match("action|input\n|text|/dw (%d+)");DropItem(242,amount);logToConsole("`6/dw "..amount);tol("`9Dropped `2"..amount.." `9World Lock.");ovlay("`9Dropped `2"..amount.." `9World Lock");return true end
-
--- Custom Drop
-if packet:find("action|input\n|text|/cd (%d+)")then
-local amount=packet:match("action|input\n|text|/cd (%d+)")
-local totalAmount=amount
-local bgl=math.floor(amount/10000);amount=amount-bgl*10000
-local dl=math.floor(amount/100);local wl=amount%100
-if checkitm(242)<wl then ovlay(1796)end
-if checkitm(1796)<dl then ovlay(7188)end
-if bgl>0 then DropItem(7188,bgl)end
-if dl>0 then DropItem(1796,dl)end
-if wl>0 then DropItem(242,wl)end
-local dropText=(bgl~=0 and bgl.." `eBlue Gem Lock`9."or"").." `2"..(dl~=0 and dl.." `1Diamond Lock`9."or"").." `2"..(wl~=0 and wl.." `9World Lock."or"")
-logToConsole("`6/cd "..totalAmount)
-tol("`9Dropped `2"..dropText)
-ovlay("`9Dropped `2"..dropText)
-return true
-end
-
--- Drop All Locks
-if packet:find("action|input\n|text|/daw")then
-if checkitm(7188)>0 then DropItem(7188,checkitm(7188))end
-if checkitm(1796)>0 then DropItem(1796,checkitm(1796))end
-if checkitm(242)>0 then DropItem(242,checkitm(242))end
-local dropText=(checkitm(7188)~=0 and checkitm(7188).." `eBlue Gem Lock`9."or"").." `2"..(checkitm(1796)~=0 and checkitm(1796).." `1Diamond Lock`9."or"").." `2"..(checkitm(242)~=0 and checkitm(242).." `9World Lock."or"")
-logToConsole("`6/daw")
-tol("`9Dropped `2"..dropText)
-return true
-end
-
--- Drop All Items
-if packet:find("action|input\n|text|/dropall")then
-logToConsole("`6/dropall")
-tol("`9Starting to drop all items...")
-ovlay("`9Preparing to drop...")
-local droppedCount=0
-local itemsToDrop={}
-for _,inv in pairs(getInventory())do
-if inv.id and inv.amount and inv.amount>0 then
-local item=getItemByID(inv.id)
-local itemName=item and item.Name or"Item "..inv.id
-table.insert(itemsToDrop,{id=inv.id,amount=inv.amount,name=itemName})
-end
-end
-local totalItems=#itemsToDrop
-tol("`9Found `2"..totalItems.." `9different items to drop.")
-sleep(500)
-for _,item in pairs(itemsToDrop)do
-DropItem(item.id,item.amount)
-droppedCount=droppedCount+1
-tol("`9[`2"..droppedCount.."`9/`2"..totalItems.."`9] Dropped: `2"..item.name.." `9x`2"..item.amount)
-ovlay("`9Dropping... `2"..droppedCount.."/"..totalItems)
-sleep(350)
-if droppedCount%10==0 then tol("`9Pausing for safety... (`2"..droppedCount.."/"..totalItems.." `9completed)");sleep(800)end
-end
-tol("`2Successfully dropped all items! `9Total: `2"..droppedCount.." `9different items.")
-ovlay("`2Drop Complete! "..droppedCount.." items")
-return true
-end
-
--- Hosting Commands
-if packet:find("action|input\n|text|/pos 1")then PX1=getLocal().pos.x//32;PY1=getLocal().pos.y//32;logToConsole("`6/pos 1");tol("`9Set Position 1 to (`2"..PX1.."`9, `2"..PY1.."`9).");ovlay("`9Set Position 1 to (`2"..PX1.."`9, `2"..PY1.."`9)");return true end
-if packet:find("action|input\n|text|/pos 2")then PX2=getLocal().pos.x//32;PY2=getLocal().pos.y//32;logToConsole("`6/pos 2");tol("`9Set Position 2 to (`2"..PX2.."`9, `2"..PY2.."`9).");ovlay("`9Set Position 2 to (`2"..PX2.."`9, `2"..PY2.."`9)");return true end
-if packet:find("action|input\n|text|/tax (%d+)")then local tax=packet:match("action|input\n|text|/tax (%d+)");Tax=""..tax.."";logToConsole("`6/tax "..Tax);tol("`9Set Tax to : `2"..Tax.."%%`9.");ovlay("`9Set Tax to : `2"..Tax.."%");return true end
-if packet:find("action|input\n|text|/bet (%d+)")then TotalBet=packet:match("action|input\n|text|/bet (%d+)");logToConsole("`6/bet "..TotalBet);tol("`9Set Bet to : `2"..TotalBet.."`9.");ovlay("`9Set Bet to : `2"..TotalBet);return true end
-
-if packet:find("action|input\n|text|/take")then
-collect()
-local taxAmount=math.floor(Amount*Tax/100)
-local dropAmount=Amount-taxAmount
-local halfBet=Amount//2
-logToConsole("`6/take")
-tol("`9Tax : `2"..Tax.."%%`9.")
-tol("`9Drop to Winner : `2"..dropAmount.."`9.")
-tol("`9Successfully Took All Bets`9.")
-ovlay("`9Tax (`2"..Tax.."%`9) Drop to Winner (`2"..dropAmount.."`9)")
-return true
-end
-
-if packet:find("action|input\n|text|/win 1")then
-local taxAmount=math.floor(Amount*Tax/100)
-local dropAmount=Amount-taxAmount
-local bgl=math.floor(drop/10000);drop=drop-bgl*10000;local dl=math.floor(drop/100);local wl=drop%100
-sendPacketRaw(false,{type=0,posX=(PX1)*32,posY=(PY1)*32,state=48})
-if checkitm(242)<wl then ovlay(1796)end
-if checkitm(1796)<dl then ovlay(7188)end
-if bgl>0 then DropItem(7188,bgl)end
-if dl>0 then DropItem(1796,dl)end
-if wl>0 then DropItem(242,wl)end
-local dropText=(bgl~=0 and bgl.." `eBlue Gem Lock`9."or"").." `2"..(dl~=0 and dl.." `1Diamond Lock`9."or"").." `2"..(wl~=0 and wl.." `9World Lock."or"")
-logToConsole("`6/win 1")
-tol("`9Total Bet : `2"..Amount.."`9.")
-tol("`9Tax : `2"..Tax.."%%`9.")
-tol("`9Drop to Winner : `2"..dropAmount.."`9.")
-tol("`9Dropped `2"..dropText)
-ovlay("`9Dropped `2"..dropText)
-return true
-end
-
-if packet:find("action|input\n|text|/win 2")then
-local taxAmount=math.floor(Amount*Tax/100)
-local dropAmount=Amount-taxAmount
-local bgl=math.floor(drop/10000);drop=drop-bgl*10000;local dl=math.floor(drop/100);local wl=drop%100
-sendPacketRaw(false,{type=0,posX=(PX2)*32,posY=(PX2)*32,state=32})
-if checkitm(242)<wl then ovlay(1796)end
-if checkitm(1796)<dl then ovlay(7188)end
-if bgl>0 then DropItem(7188,bgl)end
-if dl>0 then DropItem(1796,dl)end
-if wl>0 then DropItem(242,wl)end
-local dropText=(bgl~=0 and bgl.." `eBlue Gem Lock`9."or"").." `2"..(dl~=0 and dl.." `1Diamond Lock`9."or"").." `2"..(wl~=0 and wl.." `9World Lock."or"")
-logToConsole("`6/win 2")
-tol("`9Total Bet : `2"..Amount.."`9.")
-tol("`9Tax : `2"..Tax.."%%`9.")
-tol("`9Drop to Winner : `2"..dropAmount.."`9.")
-tol("`9Dropped `2"..dropText)
-ovlay("`9Dropped `2"..dropText)
-return true
-end
-
--- Balance Command
-if packet:find("action|input\n|text|/balance")then
-logToConsole("`6/balance")
-local gems=getLocal().gems
-tol("`9Your Gems Amount : `2"..gems.."`9.")
-tol("`9Your Locks Amount : `2"..checkitm(7188).." `eBGL`9, `2"..checkitm(1796).." `1DL`9, `2"..checkitm(242).." `9WL.")
-ovlay("`9Your Locks Amount : `2"..checkitm(7188).." `eBGL`9, `2"..checkitm(1796).." `1DL`9, `2"..checkitm(242).." `9WL.")
-return true
-end
-
--- Spin Log Command
-if packet:find("action|input\n|text|/slog")then logToConsole("`6/slog");logspin();return true end
-
--- Time Command
-if packet:find("action|input\n|text|/time")then
-local date=os.date("%D")
-local time=os.date("%H:%M:%S")
-logToConsole("`6/time")
-tol("`9Your Region Date : `2"..date.."`9.")
-tol("`9Your Region Time : `2"..time.."`9.")
-ovlay("`9Your Region Time : `2"..time.."`9, `2"..date)
-return true
-end
-
--- Scanner Commands
-if packet:find("action|input\n|text|/bscan")then logToConsole("`6/bscan");tol("`9Scanning all blocks in world...");ovlay("`9Scanning blocks...");bscanPage=1;showBlockScan(1);return true end
-if packet:find("action|input\n|text|/dscan")then logToConsole("`6/dscan");tol("`9Scanning all dropped items...");ovlay("`9Scanning drops...");dscanPage=1;showDropScan(1);return true end
-if packet:find("buttonClicked|bscan_next")then bscanPage=bscanPage+1;showBlockScan(bscanPage);return true end
-if packet:find("buttonClicked|bscan_prev")then bscanPage=bscanPage-1;showBlockScan(bscanPage);return true end
-if packet:find("buttonClicked|dscan_next")then dscanPage=dscanPage+1;showDropScan(dscanPage);return true end
-if packet:find("buttonClicked|dscan_prev")then dscanPage=dscanPage-1;showDropScan(dscanPage);return true end
-
-if packet:find("action|input\n|text|/scan (%d+)")then
-local itemID=tonumber(packet:match("action|input\n|text|/scan (%d+)"))
-local count,locations=scanWorld(itemID)
-local item=getItemByID(itemID)
-local itemName=item and item.Name or"Unknown"
-logToConsole("`6/scan "..itemID)
-tol("`9Found `2"..count.." `9"..itemName.." `9in world.")
-ovlay("`9Found `2"..count.." `9"..itemName)
-return true
-end
-
-if packet:find("action|input\n|text|/tiles")then
-local stats=getWorldStats()
-logToConsole("`6/tiles")
-tol("`9World: `2"..stats.name)
-tol("`9Size: `2"..stats.width.."x"..stats.height)
-tol("`9Objects: `2"..stats.objects.." `9NPCs: `2"..stats.npcs.." `9Players: `2"..stats.players)
-ovlay("`9World Info: `2"..stats.width.."x"..stats.height.." `9| Objects: `2"..stats.objects)
-return true
-end
-
-if packet:find("action|input\n|text|/ready")then
-local readyTrees=getReadyTrees()
-logToConsole("`6/ready")
-if #readyTrees>0 then
-tol("`9Found `2"..#readyTrees.." `9ready trees:")
-for i,tree in pairs(readyTrees)do if i<=5 then tol("`2"..tree.name.." `9at (`2"..tree.x.."`9, `2"..tree.y.."`9)")end end
-if #readyTrees>5 then tol("`9... and `2"..#readyTrees-5 .." `9more.")end
-ovlay("`9Found `2"..#readyTrees.." `9ready trees")
-else
-tol("`4No ready trees found!")
-ovlay("`4No ready trees found!")
-end
-return true
-end
-
--- Trash Command
-if packet:find("action|input\n|text|/trash (%d+)")then
-local itemID=tonumber(packet:match("action|input\n|text|/trash (%d+)"))
-local count=checkitm(itemID)
-if count>0 then
-DropItem(itemID,count)
-local item=getItemByID(itemID)
-local itemName=item and item.Name or"Unknown"
-logToConsole("`6/trash "..itemID)
-tol("`9Dropped `2"..count.." `9"..itemName)
-ovlay("`9Dropped `2"..count.." `9"..itemName)
-else
-tol("`4Item not found in inventory!")
-end
-return true
-end
-
--- Find Inventory Command
-if packet:find("action|input\n|text|/findinv (.+)")then
-local searchName=packet:match("action|input\n|text|/findinv (.+)")
-local results=findItemByName(searchName)
-logToConsole("`6/findinv "..searchName)
-if #results>0 then
-tol("`9Found `2"..#results.." `9items in inventory matching '"..searchName.."':")
-for i,item in pairs(results)do if i<=5 then tol("`2"..item.name.." `9x`2"..item.amount.." `9(ID: `2"..item.id.."`9)")end end
-if #results>5 then tol("`9... and `2"..#results-5 .." `9more.")end
-else
-tol("`4No items found in inventory matching '"..searchName.."'!")
-end
-return true
-end
-
--- Inventory Command
-if packet:find("action|input\n|text|/inv")then
-local totalValue=getTotalInventoryValue()
-local bgl=checkitm(7188)
-local dl=checkitm(1796)
-local wl=checkitm(242)
-logToConsole("`6/inv")
-tol("`9=== `2Inventory Details `9===")
-tol("`eBlue Gem Lock: `2"..bgl.." `9(Value: `2"..bgl*10000 .." WL`9)")
-tol("`1Diamond Lock: `2"..dl.." `9(Value: `2"..dl*100 .." WL`9)")
-tol("`9World Lock: `2"..wl)
-tol("`9Total Value: `2"..totalValue.." WL")
-ovlay("`9Total Value: `2"..totalValue.." WL")
-return true
-end
-
--- Auto Collect Commands
-if packet:find("action|input\n|text|/ac (%d+)")then
-local range=tonumber(packet:match("action|input\n|text|/ac (%d+)"))
-if range and range>=1 and range<=20 then
-autoCollectRange=range
-logToConsole("`6/ac "..range)
-tol("`9Auto Collect range set to: `2"..range.." `9tiles")
-ovlay("`9Range: `2"..range.." `9tiles")
-else
-tol("`4Invalid range! Must be between 1-20")
-ovlay("`4Invalid range!")
-end
-return true
-elseif packet:find("action|input\n|text|/ac")then
-autoCollectActive=not autoCollectActive
-local status=autoCollectActive and"`2ON"or"`4OFF"
-local statusText=autoCollectActive and"`2ENABLED"or"`4DISABLED"
-logToConsole("`6/ac")
-tol("`9Auto Collect: "..status)
-tol("`9Range: `2"..autoCollectRange.." `9tiles")
-ovlay("`9Auto Collect "..statusText)
-return true
-end
-
-if packet:find("action|input\n|text|/collect (%d+)")then
-local itemID=tonumber(packet:match("action|input\n|text|/collect (%d+)"))
-local collected=collectItemInRange(itemID,10)
-local item=getItemByID(itemID)
-local itemName=item and item.Name or"Unknown"
-logToConsole("`6/collect "..itemID)
-tol("`9Collected `2"..collected.." `9"..itemName)
-ovlay("`9Collected `2"..collected.." `9items")
-return true
-end
-
-if packet:find("action|input\n|text|/vacuum (%d+)")then
-local range=tonumber(packet:match("action|input\n|text|/vacuum (%d+)"))
-local collected=collectItemInRange(0,range)
-logToConsole("`6/vacuum "..range)
-tol("`9Collected `2"..collected.." `9items in `2"..range.." `9tile range")
-ovlay("`9Collected `2"..collected.." `9items")
-return true
-end
-
-if packet:find("action|input\n|text|/mag")then
-magnetMode=not magnetMode
-local status=magnetMode and"`2ON"or"`4OFF"
-local statusText=magnetMode and"`2ENABLED"or"`4DISABLED"
-logToConsole("`6/mag")
-tol("`9Magnet Mode: "..status)
-if magnetMode then
-tol("`9All drops will be attracted to you automatically!")
-ovlay("`9Magnet Mode `2ENABLED")
-else
-tol("`9Magnet mode disabled.")
-ovlay("`9Magnet Mode `4DISABLED")
-end
-return true
-end
-
--- Player Commands
-if packet:find("action|input\n|text|/players")then
-local players=getAllPlayers()
-logToConsole("`6/players")
-tol("`9=== `2Players in World `9("..#players..")===")
-for _,player in pairs(players)do tol("`2"..player.name.." `9| NetID: `2"..player.netid)end
-return true
-end
-
-if packet:find("action|input\n|text|/track (.+)")then
-local searchName=packet:match("action|input\n|text|/track (.+)")
-local found=false
-for _,player in pairs(getPlayerlist())do
-if string.lower(player.name):find(string.lower(searchName))then
-logToConsole("`6/track "..searchName)
-tol("`9Tracking `2"..player.name)
-tol("`9Position: (`2"..math.floor((player.pos.x or 0)/32).."`9, `2"..math.floor((player.pos.y or 0)/32).."`9)")
-ovlay("`9Tracking `2"..player.name.." `9at (`2"..math.floor((player.pos.x or 0)/32).."`9, `2"..math.floor((player.pos.y or 0)/32).."`9)")
-found=true
-break
-end
-end
-if not found then tol("`4Player '"..searchName.."' not found!")end
-return true
-end
-
--- Item Info Command (Disabled if getItemByID not available)
-if packet:find("action|input\n|text|/item (.+)")then
-local searchTerm=packet:match("action|input\n|text|/item (.+)")
-local item=nil
-if tonumber(searchTerm)then
-item=getItemByID(tonumber(searchTerm))
-else
-local searchLower=string.lower(searchTerm)
-for i=1,15000 do
-local testItem=getItemByID(i)
-if testItem and testItem.Name then
-if string.lower(testItem.Name):find(searchLower)then item=testItem;break end
-end
-end
-end
-if item then
-logToConsole("`6/item "..searchTerm)
-tol("`9=== `2"..(item.Name or"Unknown").." `9===")
-tol("`9Item ID: `2"..(item.id or"N/A"))
-tol("`9Item Type: `2"..(item.ItemType or"N/A"))
-tol("`9Rarity: `2"..(item.Rarity or"N/A"))
-tol("`9Collision: `2"..(item.Collision or"N/A"))
-else
-tol("`4Item '"..searchTerm.."' not found!")
-end
-return true
-end
-
--- Spin Statistics
-if packet:find("action|input\n|text|/spinstat")then
-logToConsole("`6/spinstat")
-local winRate=SpinStats.total>0 and(SpinStats.wins/SpinStats.total*100)or 0
-tol("`9=== `2Spin Statistics `9===")
-tol("`9Total Spins: `2"..SpinStats.total)
-tol("`9Wins: `2"..SpinStats.wins.." `9| Losses: `2"..SpinStats.losses)
-tol("`9Win Rate: `2"..string.format("%.2f",winRate).."%")
-ovlay("`9Win Rate: `2"..string.format("%.2f",winRate).."%")
-return true
-end
-
--- Export Spin History
-if packet:find("action|input\n|text|/export")then
-logToConsole("`6/export")
-local exportData="=== XBOY999 Spin History Export ===\n"
-for _,spin in pairs(LogSpin)do exportData=exportData..spin.spins.."\n"end
-tol("`2Spin history exported!")
-tol("`9Total entries: `2"..#LogSpin)
-ovlay("`2Spin history exported!")
-return true
-end
-
--- Help Command
-if packet:find("action|input\n|text|/help")then sendVariant({[0]="OnDialogRequest",[1]=proxy_menu},-1,100);logToConsole("`6/help");return true end
-
--- Menu Buttons
-if packet:find("buttonClicked|cmd_drop")then showDropMenu();return true end
-if packet:find("buttonClicked|cmd_hosting")then showHostingMenu();return true end
-if packet:find("buttonClicked|cmd_gamble")then showGambleMenu();return true end
-if packet:find("buttonClicked|cmd_scanner")then showScannerMenu();return true end
-if packet:find("buttonClicked|cmd_collect")then showCollectMenu();return true end
-if packet:find("buttonClicked|cmd_player")then showPlayerMenu();return true end
-if packet:find("buttonClicked|cmd_utility")then showUtilityMenu();return true end
-if packet:find("buttonClicked|backtomenu")then sendVariant({[0]="OnDialogRequest",[1]=proxy_menu},-1,100);return true end
-
--- Find World Commands
-if packet=="action|input\n|text|/f"then logToConsole("`6/f");findRandomWorld();return true end
-if packet:find("action|input\n|text|/setlength (%d+)")then
-local length=tonumber(packet:match("action|input\n|text|/setlength (%d+)"))
-if length and length>=1 and length<=24 then
-world_len=length
-logToConsole("`6/setlength "..length)
-tol("`9World length set to: `2"..length)
-ovlay("`9World length: `2"..length)
-else
-tol("`4Invalid length! Must be between 1-24")
-ovlay("`4Invalid length!")
-end
-return true
-end
-
-if packet:find("action|input\n|text|/worldtype wn")then world_type="wn";logToConsole("`6/worldtype wn");tol("`9World type set to: `2With Number `9(A-Z0-9)");ovlay("`9Type: `2With Number");return true end
-if packet:find("action|input\n|text|/worldtype nn")then world_type="nn";logToConsole("`6/worldtype nn");tol("`9World type set to: `2No Number `9(A-Z only)");ovlay("`9Type: `2No Number");return true end
-
--- Warp Command
-if packet:find("action|input\n|text|/warp (.+)")then local worldName=packet:match("action|input\n|text|/warp (.+)");logToConsole("`6/warp "..worldName);warpToWorld(worldName);return true end
-
--- Relog Command
-if packet:find("action|input\n|text|/rr")then logToConsole("`6/rr");relogWorld();return true end
-
--- Easter Egg: Friends Command
-if packet:find("action|friends")then findRandomWorld();return true end
-
-return false
-end)
-
--- Initial Welcome Dialog
-sendVariant({[0]="OnDialogRequest",[1]=loginp},-1,3500)
-logToConsole("`2=== XBOY999 PROXY ===")
-logToConsole("`2All commands ready! Type /proxy for help")
+end_dialog|utilitycmd||]]},-1,200)end
+function DropItem(id,count)sendPacket(2,"action|drop\n|itemID|"..id.."\n")sendPacket(2,"action|dialog_return\ndialog_name|drop_item\nitemID|"..id.."|\ncount|"..count.."\n")end;function checkitm(id)for _,inv in pairs(getInventory())do if inv.id==id then return inv.amount end end;return 0 end;function ovlay(str)sendVariant({[0]="OnTextOverlaySet",[1]=str},-1,100)end;function tol(str)logToConsole("`9[`cXBOY`2999`9] `o"..str)end
+function CountAndStoreAmount()Amount=0;for _,list in pairs(data)do Name="";if list.id==7188 then Name="Blue Gem Lock";Amount=Amount+list.count*10000 elseif list.id==1796 then Name="Diamond Lock";Amount=Amount+list.count*100 elseif list.id==242 then Name="World Lock";Amount=Amount+list.count end end;data={}end
+function collect()tiles={{PX1,PY1},{PX2,PY2}};for _,obj in pairs(getWorldObject())do for _,tiles in pairs(tiles)do if(obj.pos.x)//32==tiles[1]and(obj.pos.y)//32==tiles[2]then sendPacketRaw(false,{type=11,value=obj.oid,x=obj.pos.x,y=obj.pos.y})table.insert(data,{id=obj.id,count=obj.amount})end end end;CountAndStoreAmount()data={}end
+function getNameByNetid(netid)for _,player in pairs(PlayerList)do if player.netid==netid then return player.name end end end;function refunc(number)if number==19 or number==28 or number==0 then hasil=0 else num1=math.floor(number/10);num2=number%10;hasil=string.sub(tostring(num1+num2),-1)end;return hasil end;function qefunc(number)if number>=10 then hasil=string.sub(number,-1)else hasil=number end;return hasil end
+function lefunc(number)local hasil;if number==10 or number==19 or number==28 or number==0 then hasil=0 else local num1=math.floor(number/10)local num2=number%10;local sum=num1+num2;if sum==10 then hasil=0 elseif sum==9 then hasil="`4LOSE"else hasil=string.sub(tostring(sum),-1)end end;return hasil end
+function getGame(num)local result="";local parts={};if reme then table.insert(parts,"`^REME `6"..refunc(tonumber(num)))end;if qeme then table.insert(parts,"`9QEME `6"..qefunc(tonumber(num)))end;if leme then table.insert(parts,"`eLEME `6"..lefunc(tonumber(num)))end;if #parts>0 then result=" "..table.concat(parts," `0| ")end;return result end
+function logspin()dialogSpin={};for _,spin in pairs(LogSpin)do table.insert(dialogSpin,spin.spin)end;sendVariant({[0]="OnDialogRequest",[1]="set_border_color|0,255,100,255\nset_bg_color|15,15,25,220\nset_default_color|`w\nadd_label_with_icon|big|`#Spin History|left|1436|\nadd_spacer|small|\nadd_smalltext|`wClick the wheel icon to filter player spins|\n"..table.concat(dialogSpin).."\nadd_spacer|small|\nadd_quick_exit|||\nend_dialog|world_spin|Close||"},-1,200)end
+function filterspin(id)filterLog={};for _,log in pairs(LogSpin)do if log.netid==id then table.insert(filterLog,"\nadd_label_with_icon|small|"..log.spin.."|left|758|\n")end end;sendVariant({[0]="OnDialogRequest",[1]="set_border_color|112,86,191,255\nset_bg_color|43,34,74,200\nset_default_color|`0\nadd_label_with_icon|big|"..getNameByNetid(id).."`2's Spin History|left|1436|\nadd_spacer|small|\n"..table.concat(filterLog).."|\nadd_spacer|small|\nadd_quick_exit|||\nadd_button|backtospin|Back||"},-1,200)end
+function savePlayerData(name,netid)if PlayerList[netid]==nil or PlayerList[netid].name~=name then PlayerList[netid]={name=name,netid=netid}end end;function scanWorld(itemID)local count=0;local locations={};for _,tile in pairs(getTile())do if tile.fg==itemID or tile.bg==itemID then count=count+1;table.insert(locations,{x=tile.x,y=tile.y})end end;return count,locations end
+function scanAllBlocks()local blockCount={};local totalBlocks=0;for _,tile in pairs(getTile())do if tile.fg~=0 then if blockCount[tile.fg]then blockCount[tile.fg]=blockCount[tile.fg]+1 else blockCount[tile.fg]=1 end;totalBlocks=totalBlocks+1 end;if tile.bg~=0 and tile.bg~=14 then if blockCount[tile.bg]then blockCount[tile.bg]=blockCount[tile.bg]+1 else blockCount[tile.bg]=1 end;totalBlocks=totalBlocks+1 end end;local blockList={};for itemID,count in pairs(blockCount)do local item=getItemByID(itemID)local itemName=item and item.Name or"Item ["..itemID.."]";table.insert(blockList,{id=itemID,name=itemName,count=count})end;table.sort(blockList,function(a,b)return a.count>b.count end)return blockList,totalBlocks end
+function scanAllDrops()local dropCount={};local totalDrops=0;for _,obj in pairs(getWorldObject())do if dropCount[obj.id]then dropCount[obj.id]=dropCount[obj.id]+obj.amount else dropCount[obj.id]=obj.amount end;totalDrops=totalDrops+obj.amount end;local dropList={};for itemID,count in pairs(dropCount)do local item=getItemByID(itemID)local itemName=item and item.Name or"Item ["..itemID.."]";table.insert(dropList,{id=itemID,name=itemName,count=count})end;table.sort(dropList,function(a,b)return a.count>b.count end)return dropList,totalDrops end
+function showBlockScan(page)if not page then page=1 end;bscanPage=page;local blockList,totalBlocks=scanAllBlocks()bscanData=blockList;local itemsPerPage=15;local totalPages=math.ceil(#blockList/itemsPerPage)if bscanPage>totalPages then bscanPage=totalPages end;if bscanPage<1 then bscanPage=1 end;local startIdx=(bscanPage-1)*itemsPerPage+1;local endIdx=math.min(bscanPage*itemsPerPage,#blockList)local dialog="set_border_color|112,86,191,255\nset_bg_color|43,34,74,200\nset_default_color|`0\nadd_label_with_icon|big|`2Block Scan Results|left|3898|\nadd_smalltext|`9Total Blocks: `2"..totalBlocks.." `9| Unique: `2"..#blockList.."|\nadd_smalltext|`9Page `2"..bscanPage.." `9of `2"..totalPages.."|\nadd_spacer|small|\nadd_textbox|`9Blocks in world:|\nadd_spacer|small|\n";for i=startIdx,endIdx do if blockList[i]then dialog=dialog.."add_label_with_icon|small|`2"..blockList[i].name.." `9x`2"..blockList[i].count.."|left|"..blockList[i].id.."|\n"end end;dialog=dialog.."add_spacer|small|\n";if totalPages>1 then local buttons="";if bscanPage>1 then buttons=buttons.."add_button|bscan_prev|<< Previous|noflags|0|0|\n"end;if bscanPage<totalPages then if bscanPage>1 then buttons=buttons.."add_button|bscan_next|Next >>|noflags|0|0|\n"else buttons=buttons.."add_button|bscan_next|Next >>|noflags|0|0|\n"end end;dialog=dialog..buttons;dialog=dialog.."add_spacer|small|\n"end;dialog=dialog.."add_quick_exit|||\nend_dialog|blockscan|Close||\n";sendVariant({[0]="OnDialogRequest",[1]=dialog},-1,200)end
+function showDropScan(page)if not page then page=1 end;dscanPage=page;local dropList,totalDrops=scanAllDrops()dscanData=dropList;local itemsPerPage=15;local totalPages=math.ceil(#dropList/itemsPerPage)if dscanPage>totalPages then dscanPage=totalPages end;if dscanPage<1 then dscanPage=1 end;local startIdx=(dscanPage-1)*itemsPerPage+1;local endIdx=math.min(dscanPage*itemsPerPage,#dropList)local dialog="set_border_color|112,86,191,255\nset_bg_color|43,34,74,200\nset_default_color|`0\nadd_label_with_icon|big|`2Drop Scan Results|left|1452|\nadd_smalltext|`9Total Dropped: `2"..totalDrops.." `9| Types: `2"..#dropList.."|\n";if #dropList>0 then dialog=dialog.."add_smalltext|`9Page `2"..dscanPage.." `9of `2"..totalPages.."|\n"end;dialog=dialog.."add_spacer|small|\n";if #dropList>0 then dialog=dialog.."add_textbox|`9Items on ground:|\nadd_spacer|small|\n";for i=startIdx,endIdx do if dropList[i]then dialog=dialog.."add_label_with_icon|small|`2"..dropList[i].name.." `9x`2"..dropList[i].count.."|left|"..dropList[i].id.."|\n"end end;dialog=dialog.."add_spacer|small|\n";if totalPages>1 then local buttons="";if dscanPage>1 then buttons=buttons.."add_button|dscan_prev|<< Previous|noflags|0|0|\n"end;if dscanPage<totalPages then if dscanPage>1 then buttons=buttons.."add_button|dscan_next|Next >>|noflags|0|0|\n"else buttons=buttons.."add_button|dscan_next|Next >>|noflags|0|0|\n"end end;dialog=dialog..buttons;dialog=dialog.."add_spacer|small|\n"end else dialog=dialog.."add_textbox|`4No items dropped in world!|\nadd_spacer|small|\n"end;dialog=dialog.."add_quick_exit|||\nend_dialog|dropscan|Close||\n";sendVariant({[0]="OnDialogRequest",[1]=dialog},-1,200)end
+function getReadyTrees()local readyList={};for _,tile in pairs(getTile())do if tile.ready then local item=getItemByID(tile.fg);if item then table.insert(readyList,{x=tile.x,y=tile.y,name=item.Name})end end end;return readyList end;function getWorldStats()local world=getWorld()local objects=getWorldObject()local npcs=getNpc()local players=getPlayerlist()local objectCount=0;for _ in pairs(objects)do objectCount=objectCount+1 end;local npcCount=0;for _ in pairs(npcs)do npcCount=npcCount+1 end;local playerCount=0;for _ in pairs(players)do playerCount=playerCount+1 end;return{name=world.name,width=world.width,height=world.height,objects=objectCount,npcs=npcCount,players=playerCount}end;function getItemCount(itemID)return checkitm(itemID)end
+function findItemByName(searchName)local results={};for _,inv in pairs(getInventory())do local item=getItemByID(inv.id)if item and string.lower(item.Name):find(string.lower(searchName))then table.insert(results,{id=inv.id,name=item.Name,amount=inv.amount})end end;return results end;function getTotalInventoryValue()local total=0;total=total+checkitm(7188)*10000;total=total+checkitm(1796)*100;total=total+checkitm(242)return total end
+function collectItemInRange(itemID,range)local collected=0;local me=getLocal()local myPosX=me.pos.x or 0;local myPosY=me.pos.y or 0;for _,obj in pairs(getWorldObject())do if itemID==0 or obj.id==itemID then local distance=math.sqrt((obj.pos.x-myPosX)^2+(obj.pos.y-myPosY)^2)if distance<=range*32 then sendPacketRaw(false,{type=11,value=obj.oid,x=obj.pos.x,y=obj.pos.y});collected=collected+1 end end end;return collected end;function getAllPlayers()local playerList={};for _,player in pairs(getPlayerlist())do table.insert(playerList,{name=player.name,netid=player.netid,posX=player.pos.x,posY=player.pos.y})end;return playerList end;function placeBlock(x,y,itemID)findPath(x,y);sendPacketRaw(false,{type=3,px=x,py=y,value=itemID})end
+function generateRandomWorld(len,typ)local chars=(typ=="wn")and"ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"or"ABCDEFGHIJKLMNOPQRSTUVWXYZ";local world="";for i=1,len do local r=math.random(1,#chars);world=world..string.sub(chars,r,r)end;return world end;function findRandomWorld()if world_len>24 then tol("`4World length cannot be more than 24 letters!");return end;local worldName=generateRandomWorld(world_len,world_type)tol("`9Searching world: `2"..worldName)ovlay("`9Finding: `2"..worldName)sendPacket(3,"action|join_request\nname|"..worldName.."\ninvitedWorld|0")end;function warpToWorld(worldName)if worldName==""or not worldName then tol("`4Please provide a world name!");return false end;tol("`9Warping to world: `2"..worldName)ovlay("`9Warping to: `2"..worldName)sendPacket(3,"action|join_request\nname|"..worldName.."\ninvitedWorld|0")return true end;function relogWorld()local world=getWorld()if not world or world.name==""or world.name=="EXIT"then tol("`4You're not in any world!");return false end;currentWorldName=world.name;relogState=1;relogTimer=os.clock()tol("`9Relogging world: `2"..currentWorldName)sendPacket(3,"action|quit_to_exit")return true end
+local lastAutoCollect=0;AddHook("OnRender","autoActions",function(deltaTime)if autoCollectActive then local currentTime=os.clock()if currentTime-lastAutoCollect>=0.5 then lastAutoCollect=currentTime;local collected=collectItemInRange(0,autoCollectRange)end end;if relogState>0 then local currentTime=os.clock()local elapsed=currentTime-relogTimer;if relogState==1 then local world=getWorld()if world and world.name=="EXIT"then relogState=2;relogTimer=currentTime;tol("`9Left world. Rejoining in 1 second...")end elseif relogState==2 then if elapsed>=1.0 then relogState=3;relogTimer=currentTime;sendPacket(3,"action|join_request\nname|"..currentWorldName.."\ninvitedWorld|0");tol("`9Sending rejoin request...")end elseif relogState==3 then local world=getWorld()if world and world.name==currentWorldName then relogState=0;tol("`2Successfully rejoined world: `2"..currentWorldName.." `2✓")elseif elapsed>5.0 then relogState=0;tol("`4Relog timeout! Try again with /rr")end end end;return false end)
+AddHook("OnVarlist","variants",function(varlist,netID)if not varlist then return false end;local vtext=varlist[1];if varlist[0]=="OnConsoleMessage"then tol(vtext);return true end;if rfspin==true then if varlist[0]=="OnTalkBubble"and varlist[2]then if varlist[2]:find("spun the wheel")then if varlist[2]:find("OID:")then local player_chat=varlist[2]:match("player_chat=(.+)")or varlist[2];sendVariant({[0]="OnTalkBubble",[1]=varlist[1],[2]="[`4FAKE``] "..player_chat,[3]=0},-1)table.insert(LogSpin,{spin="\nadd_label_with_icon_button|small|[`4FAKE``] "..varlist[2].."|left|758|"..varlist[1].."|\n",netid=varlist[1],spins="[`4FAKE``] "..varlist[2]})return true else local spinResult=varlist[2]:match("and got (.+)")if not spinResult then return false end;local cleanResult=string.gsub(string.gsub(spinResult,"`",""),"`","")local numOnly=string.sub(cleanResult,2)local noSpace=string.gsub(numOnly," ","")local finalNum=string.gsub(string.gsub(noSpace,"!7",""),"]","")if varlist[1]~=getLocal().netid then local playerName=varlist[2]:match("%[``(.+) spun the")or"Unknown";table.insert(PlayerList,{name=playerName,netid=varlist[1]})else savePlayerData(getLocal().name:gsub("%[(.+)%]",""),varlist[1])end;local nameChange={};nameChange[0]="OnNameChanged";local pname=getNameByNetid(varlist[1])or"Player";nameChange[1]=pname.." `b[`c"..finalNum.."``]";sendVariant(nameChange,tonumber(varlist[1]))if varlist[1]~=getLocal().netid then sendVariant({[0]="OnTalkBubble",[1]=varlist[1],[2]="[`2REAL``] "..varlist[2]..getGame(tonumber(finalNum)),[3]=0},-1)else local myResult=varlist[2]:match("and got (.+)%!]")or finalNum;sendVariant({[0]="OnTalkBubble",[1]=getLocal().netid,[2]="[`2REAL``] "..getLocal().name:gsub("%[(.-)%]",""):gsub("`.","").." spun the wheel and got "..myResult.."!]"..getGame(tonumber(finalNum))},-1)end;table.insert(LogSpin,{spin="\nadd_label_with_icon_button|small|[`2REAL``] "..varlist[2].."|left|758|"..varlist[1].."|\n",netid=varlist[1],spins=varlist[2]})return true end end;return false end end;return false end)
+AddHook("OnVarlist","var",function(varlist,netID)if not varlist or not varlist[1]then return false end;if varlist[0]=="OnConsoleMessage"then if varlist[1]:find("Collected")and varlist[1]:find("(%d+) Blue Gem Lock")then local amount=varlist[1]:match("(%d+) Blue Gem Lock")if amount then tol("`9Collected `2"..amount.." `eBlue Gem Lock`9.");ovlay("`9Collected `2"..amount.." `eBlue Gem Lock")end;return true end end;if varlist[0]=="OnConsoleMessage"then if varlist[1]:find("Collected")and varlist[1]:find("(%d+) Diamond Lock")then local amount=varlist[1]:match("(%d+) Diamond Lock")if amount then tol("`9Collected `2"..amount.." `1Diamond Lock`9.");ovlay("`9Collected `2"..amount.." `1Diamond Lock")end;return true end end;if varlist[0]=="OnConsoleMessage"then if varlist[1]:find("Collected")and varlist[1]:find("(%d+) World Lock")then local amount=varlist[1]:match("(%d+) World Lock")if amount then tol("`9Collected `2"..amount.." `9World Lock.");ovlay("`9Collected `2"..amount.." `9World Lock");ovlay(242)end;return true end end;return false end)
+AddHook("OnVarlist","Hook",function(varlist,netID)if not varlist or not varlist[1]then return false end;if varlist[0]=="OnDialogRequest"then if varlist[1]:find("Drop Blue Gem Lock")or varlist[1]:find("Drop Diamond Lock")or varlist[1]:find("Drop World Lock")then return true end end;if varlist[0]=="OnDialogRequest"then if varlist[1]:find("Telephone")then sendPacket(2,"action|dialog_return\ndialog_name|3898\nbuttonClicked|chc2_2_1\n\n");return true end end;return false end)
+AddHook("onTextPacket","packet",function(flag,packet)if not packet then return false end;if packet:find("realfakespin|1")then rfspin=true;tol("`2REAL`o-`4FAKE `oSpin Detector `2Enabled`o.")elseif packet:find("realfakespin|0")then rfspin=false;tol("`2REAL`o-`4FAKE `oSpin Detector `4Disabled`o.")end;if packet:find("gamereme|1")then reme=true;tol("`^REME `oSpin Counter `2Enabled`o.")elseif packet:find("gamereme|0")then reme=false;tol("`^REME `oSpin Counter `4Disabled`o.")end;if packet:find("gameqeme|1")then qeme=true;tol("`9QEME `oSpin Counter `2Enabled`o.")elseif packet:find("gameqeme|0")then qeme=false;tol("`9QEME `oSpin Counter `4Disabled`o.")end;if packet:find("gameleme|1")then leme=true;tol("`eLEME `oSpin Counter `2Enabled`o.")elseif packet:find("gameleme|0")then leme=false;tol("`eLEME `oSpin Counter `4Disabled`o.")end;if packet:find("buttonClicked|proxylogspin")then logspin();return true end;if packet:find("dialog_name|world_spin\nbuttonClicked|(%d+)")then local id=packet:match("buttonClicked|(%d+)");filterspin(tonumber(id))end;if packet:find("buttonClicked|backtospin")then logspin();return true end;if packet:find("action|input\n|text|/spin")then sendVariant({[0]="OnDialogRequest",[1]=getSpinDialog()},-1,100);return true end;if packet:find("action|input\n|text|/proxy")then sendVariant({[0]="OnDialogRequest",[1]=proxy_menu},-1,100);logToConsole("`6/proxy");return true end;if packet:find("action|input\n|text|/news")then sendVariant({[0]="OnDialogRequest",[1]=loginp},-1,100);logToConsole("`6/news");return true end;if packet:find("action|input\n|text|/db (%d+)")then local amount=packet:match("action|input\n|text|/db (%d+)");DropItem(7188,amount);logToConsole("`6/db "..amount);tol("`9Dropped `2"..amount.." `eBlue Gem Lock`9.");ovlay("`9Dropped `2"..amount.." `eBlue Gem Lock");return true end;if packet:find("action|input\n|text|/dd (%d+)")then local amount=packet:match("action|input\n|text|/dd (%d+)");DropItem(1796,amount);logToConsole("`6/dd "..amount);tol("`9Dropped `2"..amount.." `1Diamond Lock`9.");ovlay("`9Dropped `2"..amount.." `1Diamond Lock");return true end;if packet:find("action|input\n|text|/dw (%d+)")then local amount=packet:match("action|input\n|text|/dw (%d+)");DropItem(242,amount);logToConsole("`6/dw "..amount);tol("`9Dropped `2"..amount.." `9World Lock.");ovlay("`9Dropped `2"..amount.." `9World Lock");return true end
+if packet:find("action|input\n|text|/cd (%d+)")then local amount=packet:match("action|input\n|text|/cd (%d+)")local totalAmount=amount;local bgl=math.floor(amount/10000);amount=amount-bgl*10000;local dl=math.floor(amount/100);local wl=amount%100;if checkitm(242)<wl then ovlay(1796)end;if checkitm(1796)<dl then ovlay(7188)end;if bgl>0 then DropItem(7188,bgl)end;if dl>0 then DropItem(1796,dl)end;if wl>0 then DropItem(242,wl)end;local dropText=(bgl~=0 and bgl.." `eBlue Gem Lock`9."or"").." `2"..(dl~=0 and dl.." `1Diamond Lock`9."or"").." `2"..(wl~=0 and wl.." `9World Lock."or"")logToConsole("`6/cd "..totalAmount)tol("`9Dropped `2"..dropText)ovlay("`9Dropped `2"..dropText)return true end;if packet:find("action|input\n|text|/daw")then if checkitm(7188)>0 then DropItem(7188,checkitm(7188))end;if checkitm(1796)>0 then DropItem(1796,checkitm(1796))end;if checkitm(242)>0 then DropItem(242,checkitm(242))end;local dropText=(checkitm(7188)~=0 and checkitm(7188).." `eBlue Gem Lock`9."or"").." `2"..(checkitm(1796)~=0 and checkitm(1796).." `1Diamond Lock`9."or"").." `2"..(checkitm(242)~=0 and checkitm(242).." `9World Lock."or"")logToConsole("`6/daw")tol("`9Dropped `2"..dropText)return true end
+if packet:find("action|input\n|text|/dropall")then logToConsole("`6/dropall")tol("`9Starting to drop all items...")ovlay("`9Preparing to drop...")local droppedCount=0;local itemsToDrop={};for _,inv in pairs(getInventory())do if inv.id and inv.amount and inv.amount>0 then local item=getItemByID(inv.id)local itemName=item and item.Name or"Item "..inv.id;table.insert(itemsToDrop,{id=inv.id,amount=inv.amount,name=itemName})end end;local totalItems=#itemsToDrop;tol("`9Found `2"..totalItems.." `9different items to drop.")sleep(500)for _,item in pairs(itemsToDrop)do DropItem(item.id,item.amount)droppedCount=droppedCount+1;tol("`9[`2"..droppedCount.."`9/`2"..totalItems.."`9] Dropped: `2"..item.name.." `9x`2"..item.amount)ovlay("`9Dropping... `2"..droppedCount.."/"..totalItems)sleep(350)if droppedCount%10==0 then tol("`9Pausing for safety... (`2"..droppedCount.."/"..totalItems.." `9completed)");sleep(800)end end;tol("`2Successfully dropped all items! `9Total: `2"..droppedCount.." `9different items.")ovlay("`2Drop Complete! "..droppedCount.." items")return true end
+if packet:find("action|input\n|text|/pos 1")then PX1=getLocal().pos.x//32;PY1=getLocal().pos.y//32;logToConsole("`6/pos 1");tol("`9Set Position 1 to (`2"..PX1.."`9, `2"..PY1.."`9).");ovlay("`9Set Position 1 to (`2"..PX1.."`9, `2"..PY1.."`9)");return true end;if packet:find("action|input\n|text|/pos 2")then PX2=getLocal().pos.x//32;PY2=getLocal().pos.y//32;logToConsole("`6/pos 2");tol("`9Set Position 2 to (`2"..PX2.."`9, `2"..PY2.."`9).");ovlay("`9Set Position 2 to (`2"..PX2.."`9, `2"..PY2.."`9)");return true end;if packet:find("action|input\n|text|/tax (%d+)")then local tax=packet:match("action|input\n|text|/tax (%d+)");Tax=""..tax.."";logToConsole("`6/tax "..Tax);tol("`9Set Tax to : `2"..Tax.."%%`9.");ovlay("`9Set Tax to : `2"..Tax.."%");return true end;if packet:find("action|input\n|text|/bet (%d+)")then TotalBet=packet:match("action|input\n|text|/bet (%d+)");logToConsole("`6/bet "..TotalBet);tol("`9Set Bet to : `2"..TotalBet.."`9.");ovlay("`9Set Bet to : `2"..TotalBet);return true end;if packet:find("action|input\n|text|/take")then collect()local taxAmount=math.floor(Amount*Tax/100)local dropAmount=Amount-taxAmount;local halfBet=Amount//2;logToConsole("`6/take")tol("`9Tax : `2"..Tax.."%%`9.")tol("`9Drop to Winner : `2"..dropAmount.."`9.")tol("`9Successfully Took All Bets`9.")ovlay("`9Tax (`2"..Tax.."%`9) Drop to Winner (`2"..dropAmount.."`9)")return true end
+if packet:find("action|input\n|text|/win 1")then local taxAmount=math.floor(Amount*Tax/100)local dropAmount=Amount-taxAmount;local bgl=math.floor(drop/10000);drop=drop-bgl*10000;local dl=math.floor(drop/100);local wl=drop%100;sendPacketRaw(false,{type=0,posX=(PX1)*32,posY=(PY1)*32,state=48})if checkitm(242)<wl then ovlay(1796)end;if checkitm(1796)<dl then ovlay(7188)end;if bgl>0 then DropItem(7188,bgl)end;if dl>0 then DropItem(1796,dl)end;if wl>0 then DropItem(242,wl)end;local dropText=(bgl~=0 and bgl.." `eBlue Gem Lock`9."or"").." `2"..(dl~=0 and dl.." `1Diamond Lock`9."or"").." `2"..(wl~=0 and wl.." `9World Lock."or"")logToConsole("`6/win 1")tol("`9Total Bet : `2"..Amount.."`9.")tol("`9Tax : `2"..Tax.."%%`9.")tol("`9Drop to Winner : `2"..dropAmount.."`9.")tol("`9Dropped `2"..dropText)ovlay("`9Dropped `2"..dropText)return true end;if packet:find("action|input\n|text|/win 2")then local taxAmount=math.floor(Amount*Tax/100)local dropAmount=Amount-taxAmount;local bgl=math.floor(drop/10000);drop=drop-bgl*10000;local dl=math.floor(drop/100);local wl=drop%100;sendPacketRaw(false,{type=0,posX=(PX2)*32,posY=(PX2)*32,state=32})if checkitm(242)<wl then ovlay(1796)end;if checkitm(1796)<dl then ovlay(7188)end;if bgl>0 then DropItem(7188,bgl)end;if dl>0 then DropItem(1796,dl)end;if wl>0 then DropItem(242,wl)end;local dropText=(bgl~=0 and bgl.." `eBlue Gem Lock`9."or"").." `2"..(dl~=0 and dl.." `1Diamond Lock`9."or"").." `2"..(wl~=0 and wl.." `9World Lock."or"")logToConsole("`6/win 2")tol("`9Total Bet : `2"..Amount.."`9.")tol("`9Tax : `2"..Tax.."%%`9.")tol("`9Drop to Winner : `2"..dropAmount.."`9.")tol("`9Dropped `2"..dropText)ovlay("`9Dropped `2"..dropText)return true end
+if packet:find("action|input\n|text|/balance")then logToConsole("`6/balance")local gems=getLocal().gems;tol("`9Your Gems Amount : `2"..gems.."`9.")tol("`9Your Locks Amount : `2"..checkitm(7188).." `eBGL`9, `2"..checkitm(1796).." `1DL`9, `2"..checkitm(242).." `9WL.")ovlay("`9Your Locks Amount : `2"..checkitm(7188).." `eBGL`9, `2"..checkitm(1796).." `1DL`9, `2"..checkitm(242).." `9WL.")return true end;if packet:find("action|input\n|text|/slog")then logToConsole("`6/slog");logspin();return true end;if packet:find("action|input\n|text|/time")then local date=os.date("%D")local time=os.date("%H:%M:%S")logToConsole("`6/time")tol("`9Your Region Date : `2"..date.."`9.")tol("`9Your Region Time : `2"..time.."`9.")ovlay("`9Your Region Time : `2"..time.."`9, `2"..date)return true end
+if packet:find("action|input\n|text|/bscan")then logToConsole("`6/bscan");tol("`9Scanning all blocks in world...");ovlay("`9Scanning blocks...");bscanPage=1;showBlockScan(1);return true end;if packet:find("action|input\n|text|/dscan")then logToConsole("`6/dscan");tol("`9Scanning all dropped items...");ovlay("`9Scanning drops...");dscanPage=1;showDropScan(1);return true end;if packet:find("buttonClicked|bscan_next")then bscanPage=bscanPage+1;showBlockScan(bscanPage);return true end;if packet:find("buttonClicked|bscan_prev")then bscanPage=bscanPage-1;showBlockScan(bscanPage);return true end;if packet:find("buttonClicked|dscan_next")then dscanPage=dscanPage+1;showDropScan(dscanPage);return true end;if packet:find("buttonClicked|dscan_prev")then dscanPage=dscanPage-1;showDropScan(dscanPage);return true end;if packet:find("action|input\n|text|/scan (%d+)")then local itemID=tonumber(packet:match("action|input\n|text|/scan (%d+)"))local count,locations=scanWorld(itemID)local item=getItemByID(itemID)local itemName=item and item.Name or"Unknown";logToConsole("`6/scan "..itemID)tol("`9Found `2"..count.." `9"..itemName.." `9in world.")ovlay("`9Found `2"..count.." `9"..itemName)return true end;if packet:find("action|input\n|text|/tiles")then local stats=getWorldStats()logToConsole("`6/tiles")tol("`9World: `2"..stats.name)tol("`9Size: `2"..stats.width.."x"..stats.height)tol("`9Objects: `2"..stats.objects.." `9NPCs: `2"..stats.npcs.." `9Players: `2"..stats.players)ovlay("`9World Info: `2"..stats.width.."x"..stats.height.." `9| Objects: `2"..stats.objects)return true end
+if packet:find("action|input\n|text|/ready")then local readyTrees=getReadyTrees()logToConsole("`6/ready")if #readyTrees>0 then tol("`9Found `2"..#readyTrees.." `9ready trees:")for i,tree in pairs(readyTrees)do if i<=5 then tol("`2"..tree.name.." `9at (`2"..tree.x.."`9, `2"..tree.y.."`9)")end end;if #readyTrees>5 then tol("`9... and `2"..#readyTrees-5 .." `9more.")end;ovlay("`9Found `2"..#readyTrees.." `9ready trees")else tol("`4No ready trees found!")ovlay("`4No ready trees found!")end;return true end;if packet:find("action|input\n|text|/trash (%d+)")then local itemID=tonumber(packet:match("action|input\n|text|/trash (%d+)"))local count=checkitm(itemID)if count>0 then DropItem(itemID,count)local item=getItemByID(itemID)local itemName=item and item.Name or"Unknown";logToConsole("`6/trash "..itemID)tol("`9Dropped `2"..count.." `9"..itemName)ovlay("`9Dropped `2"..count.." `9"..itemName)else tol("`4Item not found in inventory!")end;return true end;if packet:find("action|input\n|text|/findinv (.+)")then local searchName=packet:match("action|input\n|text|/findinv (.+)")local results=findItemByName(searchName)logToConsole("`6/findinv "..searchName)if #results>0 then tol("`9Found `2"..#results.." `9items in inventory matching '"..searchName.."':")for i,item in pairs(results)do if i<=5 then tol("`2"..item.name.." `9x`2"..item.amount.." `9(ID: `2"..item.id.."`9)")end end;if #results>5 then tol("`9... and `2"..#results-5 .." `9more.")end else tol("`4No items found in inventory matching '"..searchName.."'!")end;return true end
+if packet:find("action|input\n|text|/inv")then local totalValue=getTotalInventoryValue()local bgl=checkitm(7188)local dl=checkitm(1796)local wl=checkitm(242)logToConsole("`6/inv")tol("`9=== `2Inventory Details `9===")tol("`eBlue Gem Lock: `2"..bgl.." `9(Value: `2"..bgl*10000 .." WL`9)")tol("`1Diamond Lock: `2"..dl.." `9(Value: `2"..dl*100 .." WL`9)")tol("`9World Lock: `2"..wl)tol("`9Total Value: `2"..totalValue.." WL")ovlay("`9Total Value: `2"..totalValue.." WL")return true end;if packet:find("action|input\n|text|/ac (%d+)")then local range=tonumber(packet:match("action|input\n|text|/ac (%d+)"))if range and range>=1 and range<=20 then autoCollectRange=range;logToConsole("`6/ac "..range)tol("`9Auto Collect range set to: `2"..range.." `9tiles")ovlay("`9Range: `2"..range.." `9tiles")else tol("`4Invalid range! Must be between 1-20")ovlay("`4Invalid range!")end;return true elseif packet:find("action|input\n|text|/ac")then autoCollectActive=not autoCollectActive;local status=autoCollectActive and"`2ON"or"`4OFF";local statusText=autoCollectActive and"`2ENABLED"or"`4DISABLED";logToConsole("`6/ac")tol("`9Auto Collect: "..status)tol("`9Range: `2"..autoCollectRange.." `9tiles")ovlay("`9Auto Collect "..statusText)return true end;if packet:find("action|input\n|text|/collect (%d+)")then local itemID=tonumber(packet:match("action|input\n|text|/collect (%d+)"))local collected=collectItemInRange(itemID,10)local item=getItemByID(itemID)local itemName=item and item.Name or"Unknown";logToConsole("`6/collect "..itemID)tol("`9Collected `2"..collected.." `9"..itemName)ovlay("`9Collected `2"..collected.." `9items")return true end;if packet:find("action|input\n|text|/vacuum (%d+)")then local range=tonumber(packet:match("action|input\n|text|/vacuum (%d+)"))local collected=collectItemInRange(0,range)logToConsole("`6/vacuum "..range)tol("`9Collected `2"..collected.." `9items in `2"..range.." `9tile range")ovlay("`9Collected `2"..collected.." `9items")return true end
+if packet:find("action|input\n|text|/mag")then magnetMode=not magnetMode;local status=magnetMode and"`2ON"or"`4OFF";local statusText=magnetMode and"`2ENABLED"or"`4DISABLED";logToConsole("`6/mag")tol("`9Magnet Mode: "..status)if magnetMode then tol("`9All drops will be attracted to you automatically!")ovlay("`9Magnet Mode `2ENABLED")else tol("`9Magnet mode disabled.")ovlay("`9Magnet Mode `4DISABLED")end;return true end;if packet:find("action|input\n|text|/players")then local players=getAllPlayers()logToConsole("`6/players")tol("`9=== `2Players in World `9("..#players..")===")for _,player in pairs(players)do tol("`2"..player.name.." `9| NetID: `2"..player.netid)end;return true end;if packet:find("action|input\n|text|/track (.+)")then local searchName=packet:match("action|input\n|text|/track (.+)")local found=false;for _,player in pairs(getPlayerlist())do if string.lower(player.name):find(string.lower(searchName))then logToConsole("`6/track "..searchName)tol("`9Tracking `2"..player.name)tol("`9Position: (`2"..math.floor((player.pos.x or 0)/32).."`9, `2"..math.floor((player.pos.y or 0)/32).."`9)")ovlay("`9Tracking `2"..player.name.." `9at (`2"..math.floor((player.pos.x or 0)/32).."`9, `2"..math.floor((player.pos.y or 0)/32).."`9)")found=true;break end end;if not found then tol("`4Player '"..searchName.."' not found!")end;return true end
+if packet:find("action|input\n|text|/item (.+)")then local searchTerm=packet:match("action|input\n|text|/item (.+)")local item=nil;if tonumber(searchTerm)then item=getItemByID(tonumber(searchTerm))else local searchLower=string.lower(searchTerm)for i=1,15000 do local testItem=getItemByID(i)if testItem and testItem.Name then if string.lower(testItem.Name):find(searchLower)then item=testItem;break end end end end;if item then logToConsole("`6/item "..searchTerm)tol("`9=== `2"..(item.Name or"Unknown").." `9===")tol("`9Item ID: `2"..(item.id or"N/A"))tol("`9Item Type: `2"..(item.ItemType or"N/A"))tol("`9Rarity: `2"..(item.Rarity or"N/A"))tol("`9Collision: `2"..(item.Collision or"N/A"))else tol("`4Item '"..searchTerm.."' not found!")end;return true end;if packet:find("action|input\n|text|/spinstat")then logToConsole("`6/spinstat")local winRate=SpinStats.total>0 and(SpinStats.wins/SpinStats.total*100)or 0;tol("`9=== `2Spin Statistics `9===")tol("`9Total Spins: `2"..SpinStats.total)tol("`9Wins: `2"..SpinStats.wins.." `9| Losses: `2"..SpinStats.losses)tol("`9Win Rate: `2"..string.format("%.2f",winRate).."%")ovlay("`9Win Rate: `2"..string.format("%.2f",winRate).."%")return true end;if packet:find("action|input\n|text|/export")then logToConsole("`6/export")local exportData="=== XBOY999 Spin History Export ===\n";for _,spin in pairs(LogSpin)do exportData=exportData..spin.spins.."\n"end;tol("`2Spin history exported!")tol("`9Total entries: `2"..#LogSpin)ovlay("`2Spin history exported!")return true end;if packet:find("action|input\n|text|/help")then sendVariant({[0]="OnDialogRequest",[1]=proxy_menu},-1,100);logToConsole("`6/help");return true end
+if packet:find("buttonClicked|cmd_drop")then showDropMenu();return true end;if packet:find("buttonClicked|cmd_hosting")then showHostingMenu();return true end;if packet:find("buttonClicked|cmd_gamble")then showGambleMenu();return true end;if packet:find("buttonClicked|cmd_scanner")then showScannerMenu();return true end;if packet:find("buttonClicked|cmd_collect")then showCollectMenu();return true end;if packet:find("buttonClicked|cmd_player")then showPlayerMenu();return true end;if packet:find("buttonClicked|cmd_utility")then showUtilityMenu();return true end;if packet:find("buttonClicked|backtomenu")then sendVariant({[0]="OnDialogRequest",[1]=proxy_menu},-1,100);return true end;if packet=="action|input\n|text|/f"then logToConsole("`6/f");findRandomWorld();return true end;if packet:find("action|input\n|text|/setlength (%d+)")then local length=tonumber(packet:match("action|input\n|text|/setlength (%d+)"))if length and length>=1 and length<=24 then world_len=length;logToConsole("`6/setlength "..length)tol("`9World length set to: `2"..length)ovlay("`9World length: `2"..length)else tol("`4Invalid length! Must be between 1-24")ovlay("`4Invalid length!")end;return true end;if packet:find("action|input\n|text|/worldtype wn")then world_type="wn";logToConsole("`6/worldtype wn");tol("`9World type set to: `2With Number `9(A-Z0-9)");ovlay("`9Type: `2With Number");return true end;if packet:find("action|input\n|text|/worldtype nn")then world_type="nn";logToConsole("`6/worldtype nn");tol("`9World type set to: `2No Number `9(A-Z only)");ovlay("`9Type: `2No Number");return true end;if packet:find("action|input\n|text|/warp (.+)")then local worldName=packet:match("action|input\n|text|/warp (.+)");logToConsole("`6/warp "..worldName);warpToWorld(worldName);return true end;if packet:find("action|input\n|text|/rr")then logToConsole("`6/rr");relogWorld();return true end;if packet:find("action|friends")then findRandomWorld();return true end;return false end)
+sendVariant({[0]="OnDialogRequest",[1]=loginp},-1,3500)logToConsole("`2=== XBOY999 PROXY ===")logToConsole("`2All commands ready! Type /proxy for help")
